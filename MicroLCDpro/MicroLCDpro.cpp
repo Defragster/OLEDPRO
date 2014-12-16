@@ -630,7 +630,7 @@ void LCD_SSD1306::clear(byte x, byte y, byte width, byte height)
     ssd1306_command(SSD1306_SETSTARTLINE | 0x0); // line #0
 
     height >>= 3;
-    width >>= 3;
+    width >>= 4;
     y >>= 3;
 #ifdef TWBR
     uint8_t twbrbackup = TWBR;

@@ -8,9 +8,8 @@
 
 #include <Arduino.h>
 #include <Wire.h>
-#include <MicroLCDpro.h>
+#include <MicrOledpro.h>
 
-extern int8_t rst_RST;	// BUGBUG: Random fix - Without this in the Library and a reference display not usable
 //LCD_SH1106 lcd; /* for SH1106 OLED module */
 LCD_SSD1306 lcd; /* for SSD1306 OLED module */
 
@@ -34,7 +33,6 @@ const PROGMEM uint8_t cross[16 * 16 / 8] =
 void setup()
 {
   lcd.begin();
-  lcd.printInt(rst_RST);  // BUGBUG - without this the display doesn't clear
 }
 
 int wait = 440;

@@ -10,7 +10,7 @@
 #include <Wire.h>
 #include <MicroLCDpro.h>
 
-extern int8_t rst_RST;	// BUGBUG: pull from library the reset pin number
+extern int8_t rst_RST;	// BUGBUG: Random fix - Without this in the Library and a reference display not usable
 //LCD_SH1106 lcd; /* for SH1106 OLED module */
 LCD_SSD1306 lcd; /* for SSD1306 OLED module */
 
@@ -33,12 +33,8 @@ const PROGMEM uint8_t cross[16 * 16 / 8] =
 
 void setup()
 {
-  delay(1000);	// BUGBUG: Delays in setup() just to watch behavior : setup() need only lcd.begin()
   lcd.begin();
-  delay(4000);
-  lcd.clear();
-  lcd.setCursor(40, 1);
-  delay(500);
+  lcd.printInt(rst_RST);  // BUGBUG - without this the display doesn't clear
 }
 
 int wait = 440;
@@ -114,10 +110,9 @@ void loop()
   lcd.setFontSize(FONT_SIZE_MEDIUM);
   lcd.println("WAIT");
   lcd.printInt(wait);
-  lcd.println("rst_RST");
-  lcd.printInt(rst_RST);
   lcd.println("Count");
   lcd.printLong(lcount);
   delay(100+wait);
 }
+
 
